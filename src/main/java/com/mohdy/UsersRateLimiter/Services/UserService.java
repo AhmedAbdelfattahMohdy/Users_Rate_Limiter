@@ -39,47 +39,6 @@ public class UserService {
     public Integer getRateLimitForUser (String username){
         return userRepository.getRateLimitForUser(username);
     }
-
-    public Integer getRateLimitForUser2 (String username){
-        return userRepository.getRateLimitForUser2(username);
-    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    public void addUser(String name, String e_mail) {
-//        userRepository.addUser(name,e_mail);
-//    }
-
-//@Service
-//public class UserService {
-//
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    public List<String> getUsers() {
-//        return userRepository.getAllUsers();
-//    }
-//
-//    public void addUser(String name) {
-//        userRepository.addUser(name);
-//    }
-//}
