@@ -11,7 +11,4 @@ public class User {
     private String username;
     private String email;
     private int age;
-
-//    private int rateLimit;          // This will hold the rate limit fetched from DB
-
 }

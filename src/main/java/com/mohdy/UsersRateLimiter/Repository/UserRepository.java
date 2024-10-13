@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -41,28 +40,16 @@ public class UserRepository {
         );
     }
 
-    // Fetch Ratelimit for the user from PostgreSQL
     public Integer getRateLimitForUser(String username) {
         return jdbcTemplate.queryForObject(
-                "SELECT RateLimit FROM RateLimiter.users WHERE username = ?",
+                    "SELECT userRateLimit " +
+                        "FROM RateLimiter.users_type AS ut " +
+                        "JOIN RateLimiter.users AS u " +
+                        "ON ut.id = u.usertypeid " +
+                        "WHERE u.username = ?",
                 new Object[]{username},
                 Integer.class
         );
     }
 
 }
-
-
-
-
-
-
-
-
-// Add User
-//    public void addUser(String name,String e_mail) {
-//        jdbcTemplate.update(
-//                "INSERT INTO RateLimiter.users (username, e_mail) VALUES (?, ?)"
-//                , name , e_mail
-//        );
-//    }
