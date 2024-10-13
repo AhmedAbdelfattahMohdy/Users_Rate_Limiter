@@ -5,6 +5,10 @@ import com.mohdy.UsersRateLimiter.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
 import java.util.List;
 
 @Service
@@ -24,6 +28,16 @@ public class UserService {
 //    public void addUser(String name, String e_mail) {
 //        userRepository.addUser(name,e_mail);
 //    }
+
+    public void logToFile(String message) {
+        String filePath = "F:\\After Graduation\\Giza Systems\\Mid Project\\Ubnormal Requests History.txt";
+        try (FileWriter fileWriter = new FileWriter(filePath, true);
+             PrintWriter printWriter = new PrintWriter(fileWriter)) {
+            printWriter.println(message);  // Writing message to the file
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 }
 
 

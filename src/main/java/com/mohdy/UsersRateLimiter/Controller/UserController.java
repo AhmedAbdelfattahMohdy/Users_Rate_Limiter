@@ -41,7 +41,9 @@ public class UserController {
             redisService.incKey(username + "_trials");
             Integer current = (Integer)  redisService.getKeyValue(username + "_trials");
             if (current > 5) {
-                System.out.println("there is abnormal behavior from user: " + username + " at " + LocalDateTime.now());
+                String logMessage = "there is abnormal behavior from user: " + username + " at " + LocalDateTime.now();
+                System.out.println(logMessage);
+                userService.logToFile(logMessage); // Logging the abnormal behavior to a file
                 return null;
             } else {
                 return userResult;
