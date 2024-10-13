@@ -15,16 +15,6 @@ public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-//    public UserRepository(JdbcTemplate jdbcTemplate) {
-//        this.jdbcTemplate = jdbcTemplate;
-//    }
-
-//    public List<String> getAllUsers() {
-//        return jdbcTemplate.query(
-//                "SELECT * FROM RateLimiter.users",
-//                (ResultSet rs, int rowNum) -> rs.getString("username")
-//        );
-//    }
 
     // Get User
     public User getUserByUsername(String username){
@@ -38,6 +28,7 @@ public class UserRepository {
                 username
         );
     }
+
     // Get All Users
     public List<User> getAllUsers() {
         return jdbcTemplate.query(
@@ -50,12 +41,28 @@ public class UserRepository {
         );
     }
 
+    // Fetch Ratelimit for the user from PostgreSQL
+    public Integer getRateLimitForUser(String username) {
+        return jdbcTemplate.queryForObject(
+                "SELECT RateLimit FROM RateLimiter.users WHERE username = ?",
+                new Object[]{username},
+                Integer.class
+        );
+    }
 
-    // Add User
+}
+
+
+
+
+
+
+
+
+// Add User
 //    public void addUser(String name,String e_mail) {
 //        jdbcTemplate.update(
 //                "INSERT INTO RateLimiter.users (username, e_mail) VALUES (?, ?)"
 //                , name , e_mail
 //        );
 //    }
-}

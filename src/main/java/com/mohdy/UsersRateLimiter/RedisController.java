@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class RedisController {
     // Not nesessary to add @Autowired because (Lombok) & final
-    final  RedisService redisService;
+    final RedisService redisService;
 
     @GetMapping("/helloworld")
     public ResponseEntity<HelloWorldResponse> sayHelloWorld() {
@@ -33,7 +33,8 @@ public class RedisController {
         String redisResult = (String) redisService.getData(name);
         String responseMessage = "Welcome : %s , Your exam degree is : 92";
         redisService.incKey(name + "_trials");
-        if (redisResult == null){
+        System.out.println(redisResult);
+        if (redisResult == null){        // cache miss
             Thread.sleep(6000);
             responseMessage = String.format(responseMessage,name);
             redisService.saveData(name,responseMessage+"%");
