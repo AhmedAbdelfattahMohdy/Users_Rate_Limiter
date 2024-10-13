@@ -52,6 +52,18 @@ public class UserRepository {
         );
     }
 
+    public Integer getRateLimitForUser2(String username) {
+        return jdbcTemplate.queryForObject(
+                    "SELECT userRateLimit " +
+                        "FROM RateLimiter.users_type AS ut " +
+                        "JOIN RateLimiter.users AS u " +
+                        "ON ut.id = u.usertypeid " +
+                        "WHERE u.username = ?",
+                new Object[]{username},
+                Integer.class
+        );
+    }
+
 }
 
 

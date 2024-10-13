@@ -39,6 +39,10 @@ public class UserService {
     public Integer getRateLimitForUser (String username){
         return userRepository.getRateLimitForUser(username);
     }
+
+    public Integer getRateLimitForUser2 (String username){
+        return userRepository.getRateLimitForUser2(username);
+    }
 }
 
 

@@ -30,7 +30,7 @@ public class UserController {
         String RedisUserName = (String) redisService.getData(username);  //  *
         User userResult = userService.getUserByUsername(username);    //  -
 
-        int rateLimitDB = userService.getRateLimitForUser(username);
+        int rateLimitDB = userService.getRateLimitForUser2(username);
 
         System.out.println(RedisUserName);
         if (RedisUserName == null){        // cache miss // First request for the user
@@ -77,7 +77,7 @@ public class UserController {
 
     @GetMapping("/RateFor/{username}")
     public Integer getRateLimitForUser(@PathVariable String username){
-        return userService.getRateLimitForUser(username);
+        return userService.getRateLimitForUser2(username);
     }
 }
 
