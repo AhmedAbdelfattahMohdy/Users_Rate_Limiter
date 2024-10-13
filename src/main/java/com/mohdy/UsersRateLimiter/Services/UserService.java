@@ -25,9 +25,6 @@ public class UserService {
         return userRepository.getUserByUsername(username);
     }
 
-//    public void addUser(String name, String e_mail) {
-//        userRepository.addUser(name,e_mail);
-//    }
 
     public void logToFile(String message) {
         String filePath = "F:\\After Graduation\\Giza Systems\\Mid Project\\Ubnormal Requests History.txt";
@@ -38,6 +35,10 @@ public class UserService {
             System.out.println(e);
         }
     }
+
+    public Integer getRateLimitForUser (String username){
+        return userRepository.getRateLimitForUser(username);
+    }
 }
 
 
@@ -46,6 +47,23 @@ public class UserService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void addUser(String name, String e_mail) {
+//        userRepository.addUser(name,e_mail);
+//    }
 
 //@Service
 //public class UserService {

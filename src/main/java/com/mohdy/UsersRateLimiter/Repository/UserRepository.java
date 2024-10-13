@@ -24,6 +24,7 @@ public class UserRepository {
                         rs.getString("username"),
                         rs.getString("e_mail"),
                         rs.getInt("age")
+//                        rs.getInt("RateLimit")               //**
                 ),
                 username
         );
@@ -37,6 +38,7 @@ public class UserRepository {
                         rs.getString("username"),
                         rs.getString("e_mail"),
                         rs.getInt("age")
+//                        rs.getInt("RateLimit")         //**
                 )
         );
     }

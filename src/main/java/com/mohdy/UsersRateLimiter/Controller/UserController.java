@@ -29,10 +29,19 @@ public class UserController {
     public User getUserByUsername(@PathVariable String username) {
         String RedisUserName = (String) redisService.getData(username);  //  *
         User userResult = userService.getUserByUsername(username);    //  -
+
+        int rateLimitDB = userService.getRateLimitForUser(username);
+
         System.out.println(RedisUserName);
         if (RedisUserName == null){        // cache miss // First request for the user
               redisService.incKey(username + "_trials");
               redisService.setExpiration(username + "_trials", 60);
+
+
+//              rateLimitDB = userService.getRateLimitForUser(username);
+              redisService.saveDataWithExpiration(username + "_rateLimitDB", rateLimitDB, 60);
+
+
               // Save user with expiration in Redis (60 seconds)
               redisService.saveDataWithExpiration(username, userResult.getUsername()+"uu", 60);
               return userResult;
@@ -40,7 +49,10 @@ public class UserController {
             // Increment the trial count each time user makes a request
             redisService.incKey(username + "_trials");
             Integer current = (Integer)  redisService.getKeyValue(username + "_trials");
-            if (current > 5) {
+
+//            System.out.println(rateLimitDB);
+
+            if (current > rateLimitDB) {
                 String logMessage = "there is abnormal behavior from user: " + username + " at " + LocalDateTime.now();
                 System.out.println(logMessage);
                 userService.logToFile(logMessage); // Logging the abnormal behavior to a file
@@ -61,6 +73,11 @@ public class UserController {
     @GetMapping("/users/{username}")
     public User getUserUser(@PathVariable String username){
         return userService.getUserByUsername(username);
+    }
+
+    @GetMapping("/RateFor/{username}")
+    public Integer getRateLimitForUser(@PathVariable String username){
+        return userService.getRateLimitForUser(username);
     }
 }
 
