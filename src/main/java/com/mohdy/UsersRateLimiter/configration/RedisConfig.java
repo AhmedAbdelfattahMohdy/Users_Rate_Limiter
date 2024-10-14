@@ -1,4 +1,4 @@
-package com.mohdy.UsersRateLimiter;
+package com.mohdy.UsersRateLimiter.configration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

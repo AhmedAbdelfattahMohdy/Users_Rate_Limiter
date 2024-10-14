@@ -1,5 +1,5 @@
 package com.mohdy.UsersRateLimiter.Controller;
-import com.mohdy.UsersRateLimiter.RedisService;
+import com.mohdy.UsersRateLimiter.Services.RedisService;
 
 import com.mohdy.UsersRateLimiter.Repository.UserRepository;
 import com.mohdy.UsersRateLimiter.Services.UserService;
