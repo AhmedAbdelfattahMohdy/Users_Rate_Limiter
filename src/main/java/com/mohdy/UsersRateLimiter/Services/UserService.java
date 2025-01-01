@@ -29,8 +29,8 @@ public class UserService {
     public void logToFile(String message) {
         String filePath = "F:\\After Graduation\\Giza Systems\\Mid Project\\Ubnormal Requests History.txt";
         try (FileWriter fileWriter = new FileWriter(filePath, true);
-             PrintWriter printWriter = new PrintWriter(fileWriter)) {
-            printWriter.println(message);  // Writing message to the file
+                PrintWriter printWriter = new PrintWriter(fileWriter)) {
+                printWriter.println(message);  // Writing message to the file
         } catch (IOException e) {
             System.out.println(e);
         }

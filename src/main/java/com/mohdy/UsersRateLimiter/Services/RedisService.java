@@ -43,9 +43,4 @@ public class RedisService {
         return redisTemplate.opsForValue().get(key);
     }
 
-    // I added it to get the time of abnormal behavior
-    public void logAbnormalBehavior(String username) {
-        LocalDateTime currentTime = LocalDateTime.now();
-        System.out.println("There is abnormal behavior from user: " + username + " at " + currentTime);
-    }
 }
